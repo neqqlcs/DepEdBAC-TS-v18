@@ -199,7 +199,7 @@ $isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] == 1;
 
     <div class="back-button-container">
         <!-- Changed link to index.php and added show_stats parameter -->
-        <a href="index.php?show_stats=true" class="back-button">&larr; Back to Dashboard</a>
+        <a href="<?php echo url('index.php', ['show_stats' => 'true']); ?>" class="back-button">&larr; Back to Dashboard</a>
     </div>
     <div class="project-list">
         <?php if (!empty($projects)): ?>
@@ -240,12 +240,12 @@ $isAdmin = isset($_SESSION['admin']) && $_SESSION['admin'] == 1;
                             </td>
                             <td class="action-icons">
                                 <!-- Edit Icon -->
-                                <a href="ZFloYmJHcXVtUVZYcXBPVzJ0Wm54RUxNTnloTVRJU0x3a2hWVVVYemR0VT06OlZFbHRqb3BYZmZQS2lPVHVzMFk3YlE9PQ%3D%3D?projectID=<?php echo htmlspecialchars($project['projectID']); ?>" class="edit-project-btn" title="Edit Project" style="margin-right: 5px;">
+                                <a href="<?php echo url('edit_project.php', ['projectID' => $project['projectID']]); ?>" class="edit-project-btn" title="Edit Project" style="margin-right: 5px;">
                                     <img src="assets/images/Edit_icon.png" alt="Edit Project" style="width:24px;height:24px;">
                                 </a>
                                 <!-- Delete Icon - Only show if user is an admin -->
                                 <?php if ($isAdmin): ?>
-                                <a href="Q05JaEpRc29RRDlsR3ptV1B3Qk5NZz09Ojo5OEhRSWJwYmlqQlM0clQ2ci9seXRnPT0%3D?deleteProject=<?php echo htmlspecialchars($project['projectID']); ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this project and all its stages?');" title="Delete Project">
+                                <a href="<?php echo url('index.php', ['deleteProject' => $project['projectID']]); ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this project and all its stages?');" title="Delete Project">
                                     <img src="assets/images/delete.png" alt="Delete Project" style="width:24px;height:24px;">
                                 </a>
                                 <?php endif; ?>
